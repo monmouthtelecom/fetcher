@@ -95,7 +95,7 @@ class Net::POP3
   end
   
   def do_start( account, password )
-    s = timeout(@open_timeout) { TCPSocket.open(@address, @port) }
+    s = Timeout.timeout(@open_timeout) { TCPSocket.open(@address, @port) }
     if @usessl
       unless defined?(OpenSSL)
         raise "SSL extension not installed"
